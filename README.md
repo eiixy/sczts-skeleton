@@ -1,4 +1,7 @@
-# 
+# sczts-skeleton
+![Node.js Package](https://github.com/eiixy/sczts-skeleton/workflows/Node.js%20Package/badge.svg)
+> vue 开发骨架包
+
 ## 安装
 ```
 npm i sczts-skeleton
