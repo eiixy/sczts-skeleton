@@ -7,45 +7,56 @@ import random from "./Random"
 import str from "./Str"
 
 
+var sczts_skeleton = {
+    debounce: {},
+    throttle: {}
+}
+
 /**
  * 防抖
- * @param {*} fn 
- * @param {*} delay
+ * @param {string} key 唯一标识 
+ * @param {Function} fn
+ * @param {Number} delay
  */
-function debounce(fn, delay) {
-    let timer = null
+function debounce(key, fn, delay) {
+    let timer = sczts_skeleton.debounce[key]
     return function () {
         if (timer) {
             clearTimeout(timer)
         }
-        timer = setTimeout(fn, delay)
+        sczts_skeleton.debounce[key] = setTimeout(fn, delay)
     }
 }
 
 /**
  * 节流
- * @param {*} fn 
- * @param {*} delay 
+ * @param {string} key 唯一标识 
+ * @param {Function} fn
+ * @param {Number} delay
  */
-function throttle(fn, delay) {
-    let last_time
-    let timer = null
+function throttle(key, fn, delay) {
+    if (!(key in sczts_skeleton.throttle)) {
+        sczts_skeleton.throttle[key] = {
+            last_time: null,
+            timer: null
+        }
+    }
+    let last_time = sczts_skeleton.throttle[key].last_time
+    let timer = sczts_skeleton.throttle[key].timer
     return function () {
         let cur_time = new Date().getTime()
-        if (last_time && cur_time < last_time + delay) { //若为真，则表示上次执行过，且在期限值范围内
+        if (last_time && cur_time < last_time + delay) {
             clearTimeout(timer)
-            timer = setTimeout(() => {
+            sczts_skeleton.throttle[key].timer = setTimeout(() => {
                 fn();
-                last_time = cur_time
+                sczts_skeleton.throttle[key].last_time = cur_time
             }, delay)
         } else {
-            last_time = cur_time;
+            sczts_skeleton.throttle[key].last_time = cur_time;
             fn();
         }
     }
 }
-
-
 
 export const Arr = arr;
 export const Cache = cache;
