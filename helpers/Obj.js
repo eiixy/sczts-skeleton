@@ -3,11 +3,15 @@ export default class{
    * 移除对象中的指定键值
    * @param {Object} object
    * @param {string} key
+   * @param {* } default
    */
-  static pop(object,key){
-    let val = object[key];
-    delete object[key];
-    return val;
+  static pop(object, key, _default) {
+    if (key in object) {
+      let val = object[key];
+      delete object[key];
+      return val;
+    }
+    return _default;
   }
 
   /**

@@ -82,7 +82,7 @@ Obj.pop({a:1,b:2,c:3},'b') // => 2
 
 
 ### Arr
-#### pluckk(array, colunm) 
+#### pluck(array, colunm) 
 #### wrap(value)
 #### has(array, values)
 #### unique(array,colunms)
@@ -97,14 +97,14 @@ Obj.pop({a:1,b:2,c:3},'b') // => 2
 import Debounce from "sczts-skeleton/helpers";
 for(let i = 0; i < 5; i++){
   setTimeout(function (){
-    console.log('test Debounce',$i)
+    console.log('test Debounce', i)
     Debounce('key',()=>{
       console.log('exec Debounce')
     },1000)()
   }, 200 * i);
 }
 /**
- * echo:
+ * console.log:
  * test Debounce 0
  * test Debounce 1
  * test Debounce 2
@@ -119,14 +119,14 @@ for(let i = 0; i < 5; i++){
 import Throttle from "sczts-skeleton/helpers";
 for(let i = 0; i < 5; i++){
   setTimeout(function (){
-    console.log('test Throttle',$i)
+    console.log('test Throttle', i)
     Throttle('key',()=>{
       console.log('exec Throttle')
     },1000)()
   }, 200 * i);
 }
 /**
- * echo:
+ * console.log:
  * test Throttle 0
  * exec Throttle
  * test Throttle 1
