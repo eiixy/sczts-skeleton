@@ -47,26 +47,57 @@ export default class {
       })
     }
 
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       callback().then(res => {
         this.set(key, {
           expire: ttl + timestamp,
           data:res
         })
         resolve(res)
+      }).cache(err=>{
+        reject(err)
       })
     });
   }
 
-
+  /**
+   * 设置缓存
+   * @param {*} key 
+   * @param {*} value 
+   */
   static set(key, value) {
     console.log('set Cache:' + key);
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  static get(key) {
+  /**
+   * 获取缓存
+   * @param {*} key 
+   * @param {*} _default
+   */
+  static get(key, _default = null) {
     console.log('get Cache:' + key);
     let value = sessionStorage.getItem(key);
+    if(value == null){
+      return _default
+    }
     return JSON.parse(value);
+  }
+
+  /**
+   * 删除缓存中的数据
+   * @param {*} key 
+   */
+  static forget(key){
+    console.log('forget Cache:' + key);
+    sessionStorage.removeItem(key);
+  }
+
+  /**
+   * 清空所有的缓存
+   */
+  static clear(){
+    console.log('clear Cache');
+    sessionStorage.clear();
   }
 }

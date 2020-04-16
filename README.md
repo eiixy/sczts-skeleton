@@ -70,13 +70,15 @@ Obj.pop({a:1,b:2,c:3},'b') // => 2
     * *has(array, values)* 判断数组中是否存在某些值
     * *unique(array,colunms)* 数组去重
 * [Cache](#Cache)
-    * remember
-    * rememberPromise
-    * set
-    * get
+    * remember(key, ttl, fn) 获取和存储缓存
+    * rememberPromise(key, ttl, fn) 获取和存储缓存（返回Promise对象）
+    * set(key, data) 设置缓存数据
+    * get(key, ?defalut) 获取缓存数据
+    * forget(key) 删除指定缓存
+    * clear() 清空全部缓存
 * [Obj](#Obj)
-    * pop
-    * diff
+    * pop(key, default) 弹出对象值
+    * diff(val1, val2)  比较两个对象之间的差异
 * [Debounce](#Debounce) 防抖
 * [Throttle](#Throttle) 节流
 

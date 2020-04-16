@@ -3,9 +3,9 @@ export default class{
    * 移除对象中的指定键值
    * @param {Object} object
    * @param {string} key
-   * @param {* } default
+   * @param {*} default
    */
-  static pop(object, key, _default) {
+  static pop(object, key, _default = null) {
     if (key in object) {
       let val = object[key];
       delete object[key];
