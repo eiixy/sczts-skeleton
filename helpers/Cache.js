@@ -54,7 +54,7 @@ export default class {
           data:res
         })
         resolve(res)
-      }).cache(err=>{
+      }).catch(err=>{
         reject(err)
       })
     });
