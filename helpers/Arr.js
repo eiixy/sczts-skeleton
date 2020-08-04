@@ -72,4 +72,12 @@ export default class {
     return data;
   }
 
+  static groupBy(arr,colunm){
+    let _arr = {};
+    for(let i =0;i<arr.length;i++){
+      _arr[arr[i][colunm]] = arr[i]
+    }
+    return _arr
+  }
+
 }
